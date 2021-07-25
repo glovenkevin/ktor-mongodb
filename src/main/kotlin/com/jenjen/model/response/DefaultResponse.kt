@@ -6,5 +6,5 @@ import com.fasterxml.jackson.annotation.JsonInclude
 data class DefaultResponse(
     val code: Int,
     val status: String,
-    val data: Any? = null
+    var data: Any? = null
 )

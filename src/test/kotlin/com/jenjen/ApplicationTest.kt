@@ -1,25 +1,17 @@
 package com.jenjen
 
-import io.ktor.jackson.*
-import com.fasterxml.jackson.databind.*
-import io.ktor.features.*
-import io.ktor.routing.*
+import com.jenjen.plugins.configureRouting
 import io.ktor.http.*
-import org.slf4j.event.*
-import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.request.*
-import kotlin.test.*
 import io.ktor.server.testing.*
-import com.jenjen.plugins.*
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class ApplicationTest {
     @Test
     fun testRoot() {
         withTestApplication({ configureRouting() }) {
-            handleRequest(HttpMethod.Get, "/").apply {
+            handleRequest(HttpMethod.Get, "/healthCheck").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
-                assertEquals("Hello World!", response.content)
             }
         }
     }
